@@ -62,6 +62,16 @@ suite('parse', function() {
     ])
   });
 
+  test('parse path for object as array', function() {
+    var path = jp.parse('$.store.bicycle[]');
+    assert.deepEqual(path, [
+      { expression: { type: 'root', value: '$' } },
+      { operation: 'member', scope: 'child', expression: { type: 'identifier', value: 'store' } },
+      { operation: "member", scope: "child", expression: { type: "identifier", value: "bicycle" } },
+      { operation: "subscript", scope: "child", expression: { type: "empty_expression", value: "" } }
+    ]);
+  });
+
   test('parse path for the last book in order via expression', function() {
     var path = jp.parse('$..book[(@.length-1)]');
     assert.deepEqual(path, [

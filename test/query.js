@@ -59,6 +59,13 @@ suite('query', function() {
     ]);
   });
 
+  test('a object as array in the store', function() {
+    var results = jp.nodes(data, `$.store.bicycle[][?(@.color=='red')].price`);
+    assert.deepEqual(results, [
+      { path: ['$', 'store', 'bicycle', 0, 'price'], value: data.store.bicycle.price }
+    ]);
+  });
+
   test('last book in order via expression', function() {
     var results = jp.nodes(data, '$..book[(@.length-1)]');
     assert.deepEqual(results, [ { path: ['$', 'store', 'book', 3], value: data.store.book[3] }]);

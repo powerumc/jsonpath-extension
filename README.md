@@ -25,7 +25,7 @@ var names = jp.query(cities, '$..name');
 
 Install from npm:
 ```bash
-$ npm install jsonpath
+$ npm install jsonpath-extension
 ```
 
 ## JSONPath Syntax
@@ -39,7 +39,7 @@ JSONPath         | Description
 `.`                | Child member operator
 `..`	         | Recursive descendant operator; JSONPath borrows this syntax from E4X
 `*`	         | Wildcard matching all objects/elements regardless their names
-`[]`	         | Subscript operator
+`[]`	         | Subscript operator, or a object as array
 `[,]`	         | Union operator for alternate names or array indices as a set
 `[start:end:step]` | Array slice operator borrowed from ES4 / Python
 `?()`              | Applies a filter (script) expression via static evaluation
@@ -91,6 +91,7 @@ JSONPath                      | Description
 `$..author`                     | All authors
 `$.store.*`                    | All things in store, which are some books and a red bicycle
 `$.store..price`                | The price of everything in the store
+`$.store.bicycle[]`             | A object as array
 `$..book[2]`                    | The third book
 `$..book[(@.length-1)]`         | The last book via script subscript
 `$..book[-1:]`                  | The last book via slice
